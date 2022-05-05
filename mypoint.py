@@ -11,22 +11,22 @@ class MyPoint(object):
     return ( (self.x-point.x)**2+(self.y-point.y)**2 )**0.5
 def TextPoint(line):
   words=line.split()
-  return MyPoint(words[-2],words[-1])  
+  return MyPoint(words[-2],words[-1])
 def ConvertToMiniGantry( point ):
   newx = point.y * -1
   newy = point.x
   return MyPoint(newx,newy)
-  
+
 def SortingPoints(pointList):
   pDir = { idx:point for idx,point in enumerate(pointList) }
   idxs = { idx:False for idx in pDir.keys() }
   print(pDir)
-  
+
 if __name__ == "__main__":
   import sys
   if len(sys.argv) != 2: raise IOError('input a text file!')
   print ( 'input file : %s' % sys.argv[1] )
-  
+
   lines = [ line.strip() for line in open(sys.argv[1], 'r').readlines() if 'CIRCLE' in line ]
   points = ( TextPoint(line) for line in lines )
   convertedPoints = ( ConvertToMiniGantry(point) for point in points )
